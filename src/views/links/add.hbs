@@ -1,0 +1,24 @@
+<div class="container p-5">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form class="row g-3" action="/links/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="title" placeholder="Titulo" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" class="form-control" name="url" placeholder="URL" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="description" rows="2" placeholder="Descripcion" required></textarea>
+                        </div>
+                        <div class="form-group d-grid">
+                            <button class=" btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

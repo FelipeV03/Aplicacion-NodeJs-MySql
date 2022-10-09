@@ -1,0 +1,39 @@
+{{!-- Aca vamos alistar nuestrtos enlaces --}}
+
+<div class="container p-4">
+    <div class="row">
+        {{#each links}}
+        <div class="col-md-3 g-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    {{!-- Aca le estamos diciendo que nos redirija a la url de nuestro link --}}
+                    <a href=" {{url}}" target="_blank" style="text-decoration: none;">
+                        {{!-- Aca le estamos diciendo que nos traiga el titulo de nuestro link --}}
+                        <h3 class="card-title text-uppercase">
+                            {{title}}
+                        </h3>
+                    </a>
+                    {{!-- Aca le estamos diciendo que nos muestre la descripcion de nuestro link --}}
+                    <p class="m-2"> {{description}} </p>
+
+                    {{!-- Aca le estamos diciendo que nos muestre la fecha que tiene nestro link --}}
+                    {{!-- <p> {{created_at}} </p> --}}
+                    <p> {{timeago created_at}} </p>
+
+                    <a href="/links/delete/{{id}}" class="btn btn-danger">Eliminar  <i class="fa-regular fa-trash-can"></i></a>
+                    <a href="/links/edit/{{id}}" class="btn btn-secondary">Editar  <i class="fa-regular fa-pen-to-square"></i></a>
+
+                </div>
+            </div>
+        </div>
+        {{!-- Aca le estamos diceindo que en caso de que no halla ningun enlace nos de una respuesta --}}
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay links guardados aun</p>
+                <a class="btn btn-success" href="/links/add">Crea uno</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

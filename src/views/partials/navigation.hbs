@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Links Aplication</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        {{!-- Hacemos una condicional que nos permita ver o no pestañas dependiendo de sie estamos
+        logueados o no --}}
+        {{#if user}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+          <ul class="dropdown-menu text-center">
+            <li class="nav-item">
+              <a class="btn btn-primary " href="/links">Links <i class="fa-solid fa-link"></i></a>
+            </li>
+            <hr class="dropdown-divider">
+            <li class="nav-item">
+              <a href="/profile" class="btn btn-primary ">Perfil  <i class="fa-solid fa-user"></i></a>
+            </li>
+            <hr class="dropdown-divider">
+            <li class="nav-item">
+              <a href="/logout" class=" btn btn-danger">Cerrar sesion  <i class="fa-solid fa-right-from-bracket"></i></a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-success d-grid col-20 mx-auto" href="/links/add">Crear link <i class="fa-solid fa-plus"></i></a>
+        </li>
+        </li>
+
+
+
+
+
+        {{else}}
+        <li class="nav-item">
+          <a href="/loguin" class="nav-link active">Iniciar sesion  <i class="fa-solid fa-door-open"></i></a>
+        </li>
+        <li class="nav-item">
+          <a href="/signup" class="nav-link active">Registrarse  <i class="fa-solid fa-user-plus"></i></a>
+        </li>
+        {{/if }}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+{{!-- {{#if user}}
+<ul class="navbar-nav ">
+  <ul class="dropdown-menu">
+  </ul>
+
+</ul>
+{{/if }} --}}

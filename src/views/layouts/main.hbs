@@ -1,0 +1,45 @@
+{{!-- En est archivo vamos a poner el codigo comun de todas nuestras vistas
+osea toto el codigo que se va a repetir en nuestra pagina--}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links App</title>
+    {{!-- GOOGLE FONTS --}}
+    {{!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet"> --}}
+    {{!-- BOOTSTRAP --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    {{!-- FONT AWESOME --}}
+    {{!-- Se utiliza para poner iconos --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <script src="https://kit.fontawesome.com/df0d96d077.js" crossorigin="anonymous"></script>
+    {{!-- ESTILOS --}}
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <link rel="icon" href="../img/enlace.png">
+</head>
+
+<body>
+
+    {{> navigation }}
+    {{!-- Con esto le decimos que mi codigo solo va a cambiar en esta seccion en este caso el cuerpo--}}
+
+    {{> message }}
+
+    {{{ body }}}
+
+
+    {{!-- SCRIPTS --}}
+    {{!-- <script>setTimeout(() => document.querySelector(".alert").remove(), 5000);</script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
