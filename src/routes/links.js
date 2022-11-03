@@ -1,4 +1,3 @@
-
 // Aca vamos a almacnar los enlaces de nuestra aplicacion
 
 // Requerimos express para crear nuestras rutas
@@ -14,7 +13,6 @@ const pool = require("../database");
 const { isLoggedIn } = require("../lib/auth")
 
 // RUTAS
-
 // INSERTAR
 router.get("/add", isLoggedIn, (req, res) => {
     // Aca le estamos diciendo que nos de una respuesta ccuando accedamos a este link
@@ -29,12 +27,13 @@ router.post("/add", isLoggedIn, async (req, res) => {
     // Aca le decimos que de el objeto que nos esta envienado solo queremos la
     // propiedad titulo, url y descripcion
     const { title, url ,description } = req.body;
+
     // Aca le decimos que guardamos los anteriores datos en un objeto
     const newLink = {
         title,
         url,
         description,
-        // De esta forma hacemos que cada usuario tenga susu propios enlaces
+        // De esta forma hacemos que cada usuario tenga sus propios enlaces
         // y no se mesclenn unos con otros
         user_id: req.user.id
     };
@@ -102,7 +101,9 @@ router.get("/edit/:id", isLoggedIn, async (req, res) => {
     // Aca le estamos diciendo que nos traiga los links que necuentre por el id que le estamos pidiendo
     const links = await pool.query("SELECT * FROM links WHERE id = ?", [id]);
 
-    res.render("links/edit", {link: links[0]});
+    res.render("links/edit", {
+        link: links[0]
+    });
     // console.log(links[0]);
 });
 
