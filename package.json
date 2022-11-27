@@ -4,7 +4,8 @@
   "description": "Aplicacion con NodeJS y MySql",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "start": "nodemon src/app.js"
   },
   "author": "Felipe",
   "license": "ISC",
