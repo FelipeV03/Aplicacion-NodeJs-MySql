@@ -3,7 +3,7 @@
 // Aca requerimos el metodo passport
 const passport = require("passport");
 
-const LocalStrategy = require("passport-local").Strategy
+const LocalStrategy = require("passport-local").Strategy;
 
 // Aca requermimos el archivo database
 const pool = require("../database");
@@ -18,7 +18,7 @@ const { route } = require("../routes/authentication");
 
 
 
-// // LOGUIN
+// LOGUIN
 passport.use("local.loguin", new LocalStrategy({
     usernameField: "username",
     passwordField: "password",
@@ -30,9 +30,9 @@ passport.use("local.loguin", new LocalStrategy({
     // console.log(username);
     // console.log(password);
 
-    // console.log(req.body);
+
     // Aca vamos hacer una consulta a la bd
-    const  rows = await pool.query("SELECT * FROM users WHERE username = ?", [username]);
+    const rows = await pool.query("SELECT * FROM users WHERE username = ?", [username]);
 
     // Aca hacemos una condcional
     // Si encuentra un usuario entonces...
@@ -51,7 +51,6 @@ passport.use("local.loguin", new LocalStrategy({
             // Aca le decimos que si los datos son correctos nos muestre un mensaje
             done(null, user, req.flash("success", "Bienvenido " + user.username));
 
-
             // Si los datos no son correctos entonces...
         } else {
             // Aca ñe decimos que si los datos no son correctos nos muestre un mensaje
@@ -69,12 +68,12 @@ passport.use("local.loguin", new LocalStrategy({
 
 
 
-// REGRITRO
+// REGISTRO
 passport.use("local.signup", new LocalStrategy({
-    // Aca vamos a colocar lo que queremos arecibir
+    // Aca vamos a colocar lo que queremos recibir
     usernameFiel: "username",
     passwordFile: "password",
-    // Aca vamos a recibir el objeto reqs dentro de la funcion del localStrategy
+    // Esto lo utilzamos para recibir el objeto reqs dentro de la funcion del localStrategy en caso de que le estemos pidiendo mas campos que no esten estipulados en el formulario de loguin al usuario
     passReqToCallback: true
 
     // Aca vamos a definir que va hacer el usuario al momento de autentificarse
@@ -91,7 +90,8 @@ passport.use("local.signup", new LocalStrategy({
         password,
         fullname
     };
-    // Aca lo importamos para que cifre la contraseña
+
+    // Aca vamos a encriptar la contraseña que nos esta llegando del formulario de registro de usuario y la vamos a guardar en el objeto newUser que creamos anteriormente en la variable password
     newUser.password = await helpers.encryptPassword(password);
 
     // Aca importamos la conexion a la base de datos para que le demos este objeto y lo guarde
@@ -111,7 +111,7 @@ passport.use("local.signup", new LocalStrategy({
 
 
 // Aca guardamos la sesion
-passport.serializeUser((user, done) =>{
+passport.serializeUser((user, done) => {
     // Aca le damos un un callback con el user para que guarde la sesion
     done(null, user.id);
 });
@@ -124,6 +124,6 @@ passport.deserializeUser(async (id, done) => {
     // Una ves termine lo guardamos en una variable llamada rows
     const rows = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
 
-    // Aca le damos un callback para que os retorne el arreglo con el objeto 0
+    // Aca le damos un callback para que nos retorne el arreglo con el objeto 0
     done(null, rows[0]);
 });

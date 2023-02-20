@@ -19,18 +19,24 @@ const { isLoggedIn, isNotLoggedIn } = require("../lib/auth")
 
 // RUTAS
 
-
 // REGISTRO
 // Esta ruta es para renderizar el formulario
 router.get("/signup", isNotLoggedIn, (req, res) => {
     res.render("./auth/signup");
 });
 
+// Esta ruta es para recibir los datos del formulario y hacer la auntenticacion del usuario con passport y el metodo local.signup que hemos creado en el archivo passport.js
+router.post("/signup", isNotLoggedIn, passport.authenticate("local.signup", {
+    // Aca vamos a especificar que va a pasar cuando todo este bien o cuando todo este mal
+    successRedirect: "/profile",
+    failureRedirect: "/signup",
+    failureFlash: true // Aca le decimos que queremos que nos muestre los mensajes de error en la pantalla
+}));
 
 // Esta ruta es para recibir los datos del formulario
 // router.post("/signup", (req, res) => {
-//     // res.send("recibido",)
-//     // console.log(req.body)
+//     res.send("recibido",)
+//     console.log(req.body)
 
 //     // Aca llamamos a el modulo que hemos creado para hcer la utenticacion para que asi entienda que debe hacer
 //     // cuando lo estamos llamando
@@ -46,12 +52,7 @@ router.get("/signup", isNotLoggedIn, (req, res) => {
 // Esta ruta es para recibir los datos del formulario
 // Esta es otra forma de hacer la utenticacion y esto hacer que le pasemos los datos
 // directamente al enrutador
-router.post("/signup", isNotLoggedIn, passport.authenticate("local.signup", {
-    // Aca vamos a especificar que va a pasar cuando todo este bien o cuando todo este mal
-    successRedirect: "/profile",
-    failureRedirect: "/signup",
-    failureFlash: true
-}));
+
 
 
 
@@ -66,6 +67,7 @@ router.post("/loguin", isNotLoggedIn, (req, res, next) => {
     passport.authenticate("local.loguin", {
         // Aca vamos a especificar que va a pasar cuando todo este bien o cuando todo este mal
         successRedirect: "/profile",
+        // successRedirect: "/links",
         failureRedirect: "/loguin",
         failureFlash: true
     })(req, res, next);
@@ -90,9 +92,9 @@ router.get("/profile", isLoggedIn, (req, res) => {
 
 
 
-// CERAR SESION
+// CERRAR SESION
 router.get("/logout", isLoggedIn, (req, res) => {
-    // Aca llamamos un metodo de passport para uqe nos cierre las sesion
+    // Aca llamamos un metodo de passport para que nos cierre las sesion
     req.logOut((err) => {
         if (err) { return next(err); }
         res.redirect("/loguin");

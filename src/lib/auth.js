@@ -1,4 +1,4 @@
-// Aca vamos ha hasegurar las rutas de nuestra aplicacion
+// Aca vamos ha asegurar las rutas de nuestra aplicacion
 
 module.exports = {
     // Con esto hacemos la comprobacion de si el usuario esta logueado
@@ -15,7 +15,7 @@ module.exports = {
     // entonces le decimos que vistas puede o no puede ver
     isNotLoggedIn(req, res, next) {
 
-        if(!req.isAuthenticated()) {
+        if (!req.isAuthenticated()) {
             return next();
         }
         return res.redirect("/profile");

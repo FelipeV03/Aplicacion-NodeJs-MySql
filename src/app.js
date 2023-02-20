@@ -28,6 +28,7 @@ const { database } = require("./keys")
 // Aca va la inicalizacion de la bd y la inicializacion de express
 const app = express();
 
+// Aca requerimos el archivo passport el cual nos adyuda a autenticar los usuarios
 require("./lib/passport");
 
 
@@ -36,7 +37,8 @@ require("./lib/passport");
 
 // SETTINGS
 // Aca ponemos las configuraciones que necita mi servidor de express
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 5000);
+app.set(0);
 // Aca le decimos en donde va a estar la carpeta views
 app.set("views", path.join(__dirname, "views"));
 
@@ -78,7 +80,8 @@ app.use(express.urlencoded({ extended: false }));
 // Aca vamos a decirle que tambien reciba archivos .json
 app.use(express.json());
 
-// aca vamos a inicializar passport
+
+// aca vamos a inicializar passport para que funcione correctamente con las sesiones
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -87,9 +90,8 @@ app.use(passport.session());
 
 
 
-
 // VARIABLES GLOVALES
-// Variables que mi aplicaion nececita
+// Variables que mi aplicaion nececita en cualquier parte de mi aplicacion y que no se pueden pasar por parametros o por el req o res de express o de node por ejemplo el usuario que esta logueado en el sistema o el mensaje de error que se va a mostrar en la pantalla
 app.use((req, res, next) => {
     // Aca guardamos nuestro valor en una varaible golbal llamda success y message
     // esta nos va ayudar a con las alertas flash
@@ -114,7 +116,7 @@ app.use('/links', require("./routes/links"));
 
 
 // PUBLIC
-// Aca van los archivos estaticos
+// Aca van los archivos estaticos como imagenes, css, js, etc que no van a cambiar nunca y que no necesitan ser procesados por el servidor de express para que se muestren en el navegador del usuario final como por ejemplo las imagenes de un producto
 app.use(express.static(path.join(__dirname, "public")));
 
 
@@ -125,11 +127,15 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // INICIALIZAR SERVIDOR
 // Aca vamos inicializar el servidor
-app.listen(app.get("port"), () => {
-    console.log("(っ◔◡◔)っ", "Server on port".rainbow, app.get("port"), "(ง︡'-'︠)ง");
+// app.listen(app.get("port"), () => {
+//     console.log("(っ◔◡◔)っ", "Server on port".rainbow, app.get("port"), "(ง︡'-'︠)ง");
+// });
+
+
+// Aca vamos a inicializar el servidor
+app.listen(app.get("port"), function () {
+    console.log("(っ◔◡◔)っ", `http://localhost:${this.address().port}`.rainbow, "(ง︡'-'︠)ง");
 });
-
-
 
 
 

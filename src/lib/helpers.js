@@ -6,8 +6,7 @@ const helpers = {};
 
 // Aca vamos acrear un metodo de cifrado de contraseña
 helpers.encryptPassword = async (password) => {
-    // Aca creamos un hash el cual hace que nos encripte la contraseña
-    // a mayor numero de ejecucion mejor cifrado pero tambien mas tardado es
+    // Aca creamos un hash el cual hace que nos encripte la contraseña a mayor numero de ejecucion mejor cifrado pero tambien mas tardado es
     const salt = await bcrypt.genSalt(10);
 
     // Aca le decimos que le pasamos la password y salt para que nos genere un cifrado
@@ -21,7 +20,6 @@ helpers.encryptPassword = async (password) => {
 
 
 
-
 // Aca vamos a crear el metodo de autentificacion
 helpers.loguinPassword = async (password, savedPassword) => {
     // Aca hace la comparacion de la contraseña ya guardad y la que ingresmos en el campo
@@ -31,22 +29,11 @@ helpers.loguinPassword = async (password, savedPassword) => {
     try {
         // Aca estamos haciendo la autetificacion de la contraseña
         return await bcrypt.compare(password, savedPassword);
-    }catch(e) {
+    } catch (e) {
         console.log(e);
     }
 
 };
-
-
-
-
-
-
-
-
-
-
-
 
 // Aca vamos aexportarlo para utilizarlo
 module.exports = helpers;
