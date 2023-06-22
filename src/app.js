@@ -38,7 +38,8 @@ require("./lib/passport");
 // SETTINGS
 // Aca ponemos las configuraciones que necita mi servidor de express
 app.set("port", process.env.PORT || 5000);
-app.set(0);
+// app.set(0);
+
 // Aca le decimos en donde va a estar la carpeta views
 app.set("views", path.join(__dirname, "views"));
 

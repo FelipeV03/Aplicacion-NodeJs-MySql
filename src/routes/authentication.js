@@ -25,6 +25,8 @@ router.get("/signup", isNotLoggedIn, (req, res) => {
     res.render("./auth/signup");
 });
 
+// Esta es otra forma de hacer la utenticacion y esto hacer que le pasemos los datos
+// directamente al enrutador
 // Esta ruta es para recibir los datos del formulario y hacer la auntenticacion del usuario con passport y el metodo local.signup que hemos creado en el archivo passport.js
 router.post("/signup", isNotLoggedIn, passport.authenticate("local.signup", {
     // Aca vamos a especificar que va a pasar cuando todo este bien o cuando todo este mal
@@ -47,11 +49,6 @@ router.post("/signup", isNotLoggedIn, passport.authenticate("local.signup", {
 //         failureFlash: true
 //     });
 // });
-
-
-// Esta ruta es para recibir los datos del formulario
-// Esta es otra forma de hacer la utenticacion y esto hacer que le pasemos los datos
-// directamente al enrutador
 
 
 

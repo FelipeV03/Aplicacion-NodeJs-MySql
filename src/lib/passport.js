@@ -53,7 +53,7 @@ passport.use("local.loguin", new LocalStrategy({
 
             // Si los datos no son correctos entonces...
         } else {
-            // Aca ñe decimos que si los datos no son correctos nos muestre un mensaje
+            // Aca le decimos que si la contraseña no es correcta nos muestre un mensaje
             done(null, false, req.flash("message", "Contraseña incorrecta " + user.username));
         }
 
@@ -120,7 +120,7 @@ passport.serializeUser((user, done) => {
 
 // aca estamos haciendo la deserializacion
 passport.deserializeUser(async (id, done) => {
-    // Aca hacemos una consulta a la bd par asaber si este usuario si existe
+    // Aca hacemos una consulta a la bd para saber si este usuario si existe
     // Una ves termine lo guardamos en una variable llamada rows
     const rows = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
 
